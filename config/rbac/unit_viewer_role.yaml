@@ -1,0 +1,20 @@
+# permissions for end users to view units.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: unit-viewer-role
+rules:
+- apiGroups:
+  - custom.my.crd.com
+  resources:
+  - units
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - custom.my.crd.com
+  resources:
+  - units/status
+  verbs:
+  - get

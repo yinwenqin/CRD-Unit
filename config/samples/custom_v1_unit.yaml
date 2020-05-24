@@ -1,0 +1,7 @@
+apiVersion: custom.my.crd.com/v1
+kind: Unit
+metadata:
+  name: unit-sample
+spec:
+  # Add fields here
+  foo: bar

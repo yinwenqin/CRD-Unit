@@ -1,0 +1,79 @@
+
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  creationTimestamp: null
+  name: manager-role
+rules:
+- apiGroups:
+  - apps
+  resources:
+  - deployment
+  verbs:
+  - delete
+  - get
+  - patch
+  - update
+- apiGroups:
+  - apps
+  resources:
+  - statefulSet
+  verbs:
+  - delete
+  - get
+  - patch
+  - update
+- apiGroups:
+  - ""
+  resources:
+  - endpoint
+  verbs:
+  - get
+- apiGroups:
+  - ""
+  resources:
+  - persistentVolumeClaimStatus
+  verbs:
+  - delete
+  - get
+  - patch
+  - update
+- apiGroups:
+  - ""
+  resources:
+  - service
+  verbs:
+  - delete
+  - get
+  - patch
+  - update
+- apiGroups:
+  - custom.my.crd.com
+  resources:
+  - units
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - custom.my.crd.com
+  resources:
+  - units/status
+  verbs:
+  - get
+  - patch
+  - update
+- apiGroups:
+  - extensions
+  resources:
+  - ingress
+  verbs:
+  - delete
+  - get
+  - patch
+  - update

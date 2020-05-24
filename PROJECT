@@ -1,0 +1,7 @@
+domain: my.crd.com
+repo: Unit
+resources:
+- group: custom
+  kind: Unit
+  version: v1
+version: "2"
