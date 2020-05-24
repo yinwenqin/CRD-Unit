@@ -6766,7 +6766,7 @@ spec:
 #        - --enable-leader-election
 #        command:
 #        - /manager
-#        image: registry.youkeshu.com:5000/unit-controller:tmp
+#        image: my.registry.com:5000/unit-controller:tmp
 #        name: manager
 #        resources:
 #          limits:
