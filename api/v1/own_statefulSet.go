@@ -25,7 +25,7 @@ func (ownStatefulSet *OwnStatefulSet) MakeOwnResource(instance *Unit, logger log
 	// new a StatefulSet object
 	sts := &appsv1.StatefulSet{
 		// metadata field inherited from owner Unit
-		ObjectMeta: metav1.ObjectMeta{Name: instance.Name, Namespace:instance.Namespace, Labels: instance.Labels},
+		ObjectMeta: metav1.ObjectMeta{Name: instance.Name, Namespace: instance.Namespace, Labels: instance.Labels},
 		Spec:       ownStatefulSet.Spec,
 	}
 
@@ -76,7 +76,7 @@ func (ownStatefulSet *OwnStatefulSet) OwnResourceExist(instance *Unit, client cl
 		if errors.IsNotFound(err) {
 			return false, nil, nil
 		}
-		msg := fmt.Sprintf("StatefulSet %s/%s found, but with error: %s  \n", instance.Namespace, instance.Name)
+		msg := fmt.Sprintf("StatefulSet %s/%s found, but with error", instance.Namespace, instance.Name)
 		logger.Error(err, msg)
 		return true, found, err
 	}

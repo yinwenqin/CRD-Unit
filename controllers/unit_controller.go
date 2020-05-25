@@ -184,6 +184,7 @@ func (r *UnitReconciler) SetupWithManager(mgr ctrl.Manager) error {
 		For(&customv1.Unit{}).
 		Complete(r)
 }
+
 // Unit pre delete logic
 func (r *UnitReconciler) PreDelete(instance *customv1.Unit) error {
 	// 特别说明，own resource加上了ControllerReference之后，owner resource gc删除前，会先自动删除它的所有
@@ -213,7 +214,6 @@ func removeString(slice []string, s string) (result []string) {
 	}
 	return
 }
-
 
 // 根据Unit.Spec生成其所有的own resource
 func (r *UnitReconciler) getOwnResources(instance *customv1.Unit) ([]OwnResource, error) {

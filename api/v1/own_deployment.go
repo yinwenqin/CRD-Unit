@@ -26,7 +26,7 @@ func (ownDeployment *OwnDeployment) MakeOwnResource(instance *Unit, logger logr.
 	deployment := &appsv1.Deployment{
 		// metadata field inherited from owner Unit
 		//ObjectMeta: instance.ObjectMeta,
-		ObjectMeta: metav1.ObjectMeta{Name: instance.Name, Namespace:instance.Namespace, Labels: instance.Labels},
+		ObjectMeta: metav1.ObjectMeta{Name: instance.Name, Namespace: instance.Namespace, Labels: instance.Labels},
 		Spec:       ownDeployment.Spec,
 	}
 
@@ -77,7 +77,7 @@ func (ownDeployment *OwnDeployment) OwnResourceExist(instance *Unit, client clie
 		if errors.IsNotFound(err) {
 			return false, nil, nil
 		}
-		msg := fmt.Sprintf("Deployment %s/%s found, but with error:  \n", instance.Namespace, instance.Name)
+		msg := fmt.Sprintf("Deployment %s/%s found, but with error", instance.Namespace, instance.Name)
 		logger.Error(err, msg)
 		return true, found, err
 	}
@@ -112,7 +112,6 @@ func (ownDeployment *OwnDeployment) ApplyOwnResource(instance *Unit, client clie
 		return err
 	}
 	newDeployment := deployment.(*appsv1.Deployment)
-
 
 	// assert if deployment already exist
 	exist, found, err := ownDeployment.OwnResourceExist(instance, client, logger)

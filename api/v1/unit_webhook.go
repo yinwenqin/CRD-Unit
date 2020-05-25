@@ -66,7 +66,7 @@ func (r *Unit) Default() {
 	r.Spec.Template.Labels = labelMap
 
 	r.Status.LastUpdateTime = metav1.Now()
-	
+
 	// 当然，还可以根据需求加一些适合在初始化时做的逻辑，例如为pod注入sidecar
 	// ...
 

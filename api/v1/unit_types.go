@@ -51,14 +51,14 @@ type UnitSpec struct {
 	Selector *metav1.LabelSelector `json:"selector,omitempty"`
 
 	// Template describes the pods that will be created.
-	Template         corev1.PodTemplateSpec    `json:"template"`
+	Template         corev1.PodTemplateSpec   `json:"template"`
 	RelationResource UnitRelationResourceSpec `json:"relationResource,omitempty"`
 }
 
 type UnitRelationResourceStatus struct {
-	Service  UnitRelationServiceStatus         `json:"service,omitempty"`
+	Service  UnitRelationServiceStatus          `json:"service,omitempty"`
 	Ingress  []v1beta1.IngressRule              `json:"ingress,omitempty"`
-	Endpoint []UnitRelationEndpointStatus      `json:"endpoint,omitempty"`
+	Endpoint []UnitRelationEndpointStatus       `json:"endpoint,omitempty"`
 	PVC      corev1.PersistentVolumeClaimStatus `json:"pvc,omitempty"`
 }
 
@@ -67,14 +67,13 @@ type UnitStatus struct {
 	// INSERT ADDITIONAL STATUS FIELD - define observed state of cluster
 	// Important: Run "make" to regenerate code after modifying this file
 	Replicas       *int32      `json:"replicas,omitempty"`
-	Selector string `json:"selector"`
+	Selector       string      `json:"selector"`
 	LastUpdateTime metav1.Time `json:"lastUpdateTime,omitempty"`
 
-	BaseDeployment         appsv1.DeploymentStatus     `json:"deployment,omitempty"`
-	BaseStatefulSet        appsv1.StatefulSetStatus    `json:"statefulSet,omitempty"`
+	BaseDeployment         appsv1.DeploymentStatus    `json:"deployment,omitempty"`
+	BaseStatefulSet        appsv1.StatefulSetStatus   `json:"statefulSet,omitempty"`
 	RelationResourceStatus UnitRelationResourceStatus `json:"relationResourceStatus,omitempty"`
 }
-
 
 // +kubebuilder:object:root=true
 // +kubebuilder:subresource:status

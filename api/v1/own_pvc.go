@@ -14,10 +14,9 @@ import (
 	"sigs.k8s.io/controller-runtime/pkg/controller/controllerutil"
 )
 
-
 // pvc声明信息
 type OwnPVC struct {
-	Spec v1.PersistentVolumeClaimSpec` json:"spec"`
+	Spec v1.PersistentVolumeClaimSpec ` json:"spec"`
 }
 
 func (ownPVC *OwnPVC) MakeOwnResource(instance *Unit, logger logr.Logger,
@@ -26,8 +25,8 @@ func (ownPVC *OwnPVC) MakeOwnResource(instance *Unit, logger logr.Logger,
 	// new a PVC object
 	pvc := &v1.PersistentVolumeClaim{
 		// metadata field inherited from owner Unit
-		ObjectMeta: metav1.ObjectMeta{Name: instance.Name, Namespace:instance.Namespace, Labels: instance.Labels},
-		Spec: ownPVC.Spec,
+		ObjectMeta: metav1.ObjectMeta{Name: instance.Name, Namespace: instance.Namespace, Labels: instance.Labels},
+		Spec:       ownPVC.Spec,
 	}
 
 	// add ControllerReference for sts，the owner is Unit object
@@ -51,7 +50,7 @@ func (ownPVC *OwnPVC) OwnResourceExist(instance *Unit, client client.Client,
 			return false, nil, nil
 		}
 
-		msg := fmt.Sprintf("PVC %s/%s found, but with error: %s  \n", instance.Namespace, instance.Name)
+		msg := fmt.Sprintf("PVC %s/%s found, but with error", instance.Namespace, instance.Name)
 		logger.Error(err, msg)
 		return true, found, err
 	}

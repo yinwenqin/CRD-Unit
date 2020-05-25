@@ -27,7 +27,7 @@ func (ownIngress *OwnIngress) MakeOwnResource(instance *Unit, logger logr.Logger
 	// new a Ingress object
 	ing := &v1beta1.Ingress{
 		// metadata field inherited from owner Unit
-		ObjectMeta: metav1.ObjectMeta{Name: instance.Name, Namespace:instance.Namespace, Labels: instance.Labels},
+		ObjectMeta: metav1.ObjectMeta{Name: instance.Name, Namespace: instance.Namespace, Labels: instance.Labels},
 	}
 
 	var rules []v1beta1.IngressRule
@@ -78,7 +78,7 @@ func (ownIngress *OwnIngress) OwnResourceExist(instance *Unit, client client.Cli
 		if errors.IsNotFound(err) {
 			return false, nil, nil
 		}
-		msg := fmt.Sprintf("Ingress %s/%s found, but with error: %s  \n", instance.Namespace, instance.Name)
+		msg := fmt.Sprintf("Ingress %s/%s found, but with error ", instance.Namespace, instance.Name)
 		logger.Error(err, msg)
 		return true, found, err
 	}

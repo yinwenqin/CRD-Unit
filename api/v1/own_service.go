@@ -56,7 +56,7 @@ func (ownService *OwnService) MakeOwnResource(instance *Unit, logger logr.Logger
 	// new a Service object
 	svc := &v1.Service{
 		// metadata field inherited from owner Unit
-		ObjectMeta: metav1.ObjectMeta{Name: instance.Name, Namespace:instance.Namespace, Labels: instance.Labels},
+		ObjectMeta: metav1.ObjectMeta{Name: instance.Name, Namespace: instance.Namespace, Labels: instance.Labels},
 		Spec: v1.ServiceSpec{
 			Ports: ownService.Ports,
 			Type:  v1.ServiceTypeClusterIP,
@@ -71,7 +71,6 @@ func (ownService *OwnService) MakeOwnResource(instance *Unit, logger logr.Logger
 	labelMap := make(map[string]string, 1)
 	labelMap["app"] = instance.Name
 	svc.Spec.Selector = labelMap
-
 
 	//svc.Spec.Selector =
 	// add ControllerReference for sts，the owner is Unit object
@@ -94,7 +93,7 @@ func (ownService *OwnService) OwnResourceExist(instance *Unit, client client.Cli
 		if errors.IsNotFound(err) {
 			return false, nil, nil
 		}
-		msg := fmt.Sprintf("Service %s/%s found, but with error: %s  \n", instance.Namespace, instance.Name)
+		msg := fmt.Sprintf("Service %s/%s found, but with error", instance.Namespace, instance.Name)
 		logger.Error(err, msg)
 		return true, found, err
 	}
